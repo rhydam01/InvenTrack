@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: inventory-backend
+    env: python
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port 8000
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: inventory-db
+          property: connectionString
+
+databases:
+  - name: inventory-db
+    databaseName: inventory_db
+    user: admin
+    plan: free
