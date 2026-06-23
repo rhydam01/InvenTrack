@@ -1,6 +1,5 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
-from typing import List
 
 import models
 import schemas
@@ -26,7 +25,7 @@ def create_product(product: schemas.ProductCreate, db: Session = Depends(get_db)
     return db_product
 
 
-@router.get("", response_model=List[schemas.ProductResponse])
+@router.get("", response_model=list[schemas.ProductResponse])
 def get_products(db: Session = Depends(get_db)):
     return db.query(models.Product).order_by(models.Product.id).all()
 

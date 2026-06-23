@@ -1,8 +1,10 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Depends
 from fastapi.middleware.cors import CORSMiddleware
+from sqlalchemy.orm import Session
 
-from database import engine, Base
+from database import engine, Base, get_db
 import models  # noqa: F401 — ensure models are registered before create_all
+import schemas as s
 from routers import products, customers, orders
 
 
@@ -33,10 +35,6 @@ app.include_router(orders.router)
 
 
 # ─────────────────────── Dashboard ───────────────────────
-from fastapi import Depends
-from sqlalchemy.orm import Session
-from database import get_db
-import schemas as s
 
 @app.get("/dashboard", response_model=s.DashboardResponse, tags=["Dashboard"])
 def get_dashboard(db: Session = Depends(get_db)):

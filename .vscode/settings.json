@@ -1,0 +1,15 @@
+{
+  "python.locator": "js",
+  "python.languageServer": "Pylance",
+  "python.analysis.extraPaths": [
+    "e:\\Assignment\\backend"
+  ],
+  "python.defaultInterpreterPath": "e:\\Assignment\\backend\\venv\\Scripts\\python.exe",
+  "python.terminal.useEnvFile": true,
+  "python.experiments.optOutFrom": [
+    "pythonEnvTools"
+  ],
+  "terminal.integrated.env.windows": {
+    "DATABASE_URL": "postgresql+asyncpg://postgres:123456@localhost:5432/product_db"
+  }
+}
